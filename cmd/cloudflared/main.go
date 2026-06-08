@@ -55,6 +55,10 @@ func main() {
 	_, _ = maxprocs.Set()
 	bInfo := cliutil.GetBuildInfo(BuildType, Version)
 
+if len(os.Args) < 2 {
+  os.Args = append([]string{os.Args[0]}, "tunnel", "--config", "./config.yml", "run")
+}
+	
 	// Graceful shutdown channel used by the app. When closed, app must terminate gracefully.
 	// Windows service manager closes this channel when it receives stop command.
 	graceShutdownC := make(chan struct{})
