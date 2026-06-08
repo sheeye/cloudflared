@@ -32,3 +32,11 @@ jobs:
       uses: actions/checkout@v4
     - name: Build cloudflared
       run: make cloudflared
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cloudflared-${{ matrix.os }}-go${{ matrix.go-version }}
+        path: |
+          cloudflared*
+          bin/cloudflared*
+          dist/*
